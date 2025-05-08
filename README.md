@@ -34,7 +34,7 @@ npm install
 
 3. Chạy migrations để tạo cấu trúc database:
 ```bash
-npm run migrate
+npx sequelize-cli db:migrate
 ```
 
 4. Khởi động server development:
