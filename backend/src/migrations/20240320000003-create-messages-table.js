@@ -1,16 +1,14 @@
-
 'use strict';
 
-/** @type {import('sequelize-cli').Migration} */
 module.exports = {
-  async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('notifications', {
+  up: async (queryInterface, Sequelize) => {
+    await queryInterface.createTable('messages', {
       id: {
         type: Sequelize.INTEGER,
-        autoIncrement: true,
         primaryKey: true,
+        autoIncrement: true,
       },
-      userId: {
+      senderId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
@@ -18,11 +16,15 @@ module.exports = {
           key: 'id',
         },
         onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
       },
-      title: {
-        type: Sequelize.STRING,
+      receiverId: {
+        type: Sequelize.INTEGER,
         allowNull: false,
+        references: {
+          model: 'users',
+          key: 'id',
+        },
+        onUpdate: 'CASCADE',
       },
       content: {
         type: Sequelize.TEXT,
@@ -43,12 +45,11 @@ module.exports = {
       },
     });
 
-    // Add index for faster queries
-    await queryInterface.addIndex('notifications', ['userId']);
-    await queryInterface.addIndex('notifications', ['isRead']);
+    await queryInterface.addIndex('messages', ['senderId']);
+    await queryInterface.addIndex('messages', ['receiverId']);
   },
 
-  async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('notifications');
+  down: async (queryInterface, Sequelize) => {
+    await queryInterface.dropTable('messages');
   }
 }; 
