@@ -11,20 +11,30 @@ import {
   Card,
   CardContent
 } from '@mui/material';
+import LogoutIcon from '@mui/icons-material/Logout';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import HomeIcon from '@mui/icons-material/Home';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import PaymentIcon from '@mui/icons-material/Payment';
-import ChatIcon from '@mui/icons-material/Chat';
 
 export const AdminHome: React.FC = () => {
   const currentUser = authService.getCurrentUser();
   const navigate = useNavigate();
+  const handleLogout = () => {
+    authService.logout();
+    navigate('/login');   // chuyển về trang login chung
+  };
 
   return (
     <Container maxWidth="lg">
+      {/* Nút Đăng xuất */}
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
+        <Button variant="outlined" onClick={handleLogout}>
+          Đăng xuất
+        </Button>
+      </Box>
       <Box sx={{ mt: 4, mb: 4 }}>
         <Typography variant="h4" component="h1" gutterBottom align="center">
           Quản lý Ký túc xá
@@ -36,10 +46,10 @@ export const AdminHome: React.FC = () => {
         <Grid container spacing={3}>
           {/* Quản lý sinh viên */}
           <Grid item xs={12} md={6}>
-            <Paper 
-              sx={{ 
-                p: 3, 
-                display: 'flex', 
+            <Paper
+              sx={{
+                p: 3,
+                display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
                 cursor: 'pointer',
@@ -62,10 +72,10 @@ export const AdminHome: React.FC = () => {
 
           {/* Danh sách sinh viên */}
           <Grid item xs={12} md={6}>
-            <Paper 
-              sx={{ 
-                p: 3, 
-                display: 'flex', 
+            <Paper
+              sx={{
+                p: 3,
+                display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
                 cursor: 'pointer',
@@ -88,10 +98,10 @@ export const AdminHome: React.FC = () => {
 
           {/* Quản lý phòng */}
           <Grid item xs={12} md={6}>
-            <Paper 
-              sx={{ 
-                p: 3, 
-                display: 'flex', 
+            <Paper
+              sx={{
+                p: 3,
+                display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
                 cursor: 'pointer',
@@ -114,10 +124,10 @@ export const AdminHome: React.FC = () => {
 
           {/* Danh sách phòng */}
           <Grid item xs={12} md={6}>
-            <Paper 
-              sx={{ 
-                p: 3, 
-                display: 'flex', 
+            <Paper
+              sx={{
+                p: 3,
+                display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
                 cursor: 'pointer',
@@ -140,10 +150,10 @@ export const AdminHome: React.FC = () => {
 
           {/* Quản lý thanh toán */}
           <Grid item xs={12} md={6}>
-            <Paper 
-              sx={{ 
-                p: 3, 
-                display: 'flex', 
+            <Paper
+              sx={{
+                p: 3,
+                display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
                 cursor: 'pointer',
@@ -165,7 +175,7 @@ export const AdminHome: React.FC = () => {
           </Grid>
 
           {/* Hỗ trợ trực tuyến */}
-          <Grid item xs={12} md={6}>
+          {/* <Grid item xs={12} md={6}>
             <Paper 
               sx={{ 
                 p: 3, 
@@ -188,12 +198,12 @@ export const AdminHome: React.FC = () => {
                 Hỗ trợ và giải đáp thắc mắc cho sinh viên
               </Typography>
             </Paper>
-          </Grid>
+          </Grid> */}
 
           {/* Thêm card mới cho Tạo thông báo */}
           <Grid item xs={12} sm={6} md={4}>
-            <Card 
-              sx={{ 
+            <Card
+              sx={{
                 height: '100%',
                 display: 'flex',
                 flexDirection: 'column',
